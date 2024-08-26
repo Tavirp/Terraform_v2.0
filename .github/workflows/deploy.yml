@@ -1,0 +1,45 @@
+name: Terraform Apply
+
+on: workflow_dispatch
+
+jobs:
+  terraform:
+    name: "Terraform Apply"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: eu-central-1
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: Terraform_v2.0
+
+      - name: Terraform Format Check
+        run: terraform fmt --check
+        working-directory: Terraform_v2.0
+
+      - name: Terraform Plan
+        run: terraform plan
+        working-directory: Terraform_v2.0
+
+      - name: Terraform Validate
+        run: terraform validate
+        working-directory: Terraform_v2.0
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+        working-directory: Terraform_v2.0

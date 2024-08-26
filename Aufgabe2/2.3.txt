@@ -1,0 +1,16 @@
+Szenario: Automatisierte Bereitstellung einer Webanwendung auf mehreren Servern
+
+Voraussetzungen:
+Infrastruktur mit mehreren Linux-Servern, auf denen eine Webanwendung bereitgestellt werden soll.
+
+Schritt 1:  Installation von Ansible auf dem Steuerungsserver
+
+Schritt 2: Erstellen eines Ansible-Playbooks, also einer YAML-Datei, die die erforderlichen Aufgaben definiert.
+
+Schritt 3: Erstellen einer Nginx-Konfigurationsvorlage:
+
+Schritt 4: Ausführen des Playbooks auf den Zielservern.
+
+Ergebnis:
+Ansible installiert die erforderlichen Pakete, kopiert den Webanwendungscode auf
+die Zielserver und konfiguriert und startet den Nginx-Server.
